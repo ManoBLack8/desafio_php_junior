@@ -1,7 +1,7 @@
 <?php
 class BancoDeDados {
     private $servidor = 'localhost';
-    private $db_nome = 'Reunioes';
+    private $db_nome = 'desafio_php';
     private $usuario = 'root';
     private $senha = '';
     public $conn;
