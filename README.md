@@ -85,3 +85,5 @@ CREATE TABLE reservations (
 - Faça push para a branch: git push origin nome-sobrenome.
 - Abra um Pull Request.
 
+## Entrega do projeto
+- Crie as Tabelas pelos comando do arquivo: desafio_php.sql

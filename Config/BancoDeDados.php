@@ -9,6 +9,7 @@ class BancoDeDados {
     public function Conexao() {
         $this->conn = null;
         try {
+            date_default_timezone_set('America/Sao_Paulo');
             $this->conn = new PDO('mysql:host=' . $this->servidor . ';dbname=' . $this->db_nome, $this->usuario, $this->senha);
             $this->conn->exec('set names utf8');
         } catch (PDOException $exception) {

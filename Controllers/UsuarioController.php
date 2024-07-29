@@ -1,6 +1,6 @@
 <?php
-require_once '../config/BancoDeDados.php';
-require_once '../models/Usuarios.php';
+require_once 'config/BancoDeDados.php';
+require_once 'models/Usuarios.php';
 require_once 'SalaController.php';
 require_once 'Controller.php';
 
@@ -23,14 +23,14 @@ class UsuarioController extends Controller
             $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $this->salas->index();
         }else{
-            header('Location: ../Public/?action=create');
+            header('Location: ?action=create');
         }
         
     }
 
     public function create() {
         if($this->usuarioLogado()){
-            header('Location: ../Public/?action=index');
+            header('Location: ?action=index');
         }
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $this->usuario->nome = trim($_POST['Unome']);
@@ -41,7 +41,7 @@ class UsuarioController extends Controller
                     if(!$this->verificarDuplicidadeEmail($this->usuario->email)){
                         if($this->usuario->senha == $_POST['Usenha2']){
                             if($this->usuario->create()) {
-                                header('Location: ../Public/?action=login');
+                                header('Location: ?action=login');
                             }
                         }else {
                             $this->Modal("Senha não são iguais", "danger");
@@ -64,7 +64,7 @@ class UsuarioController extends Controller
 
     public function logar(){
         if($this->usuarioLogado()){
-            header('Location: ../Public/?action=index');
+            header('Location: ?action=index');
         }
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $this->usuario->email = trim($_POST['Uemail']);
@@ -99,7 +99,7 @@ class UsuarioController extends Controller
 
     public function home(){
         if ($_SESSION["usuario"]["nivelAcesso"] == 'admin') {
-            $this->salas->create();
+            $this->salas->home();
         }else{
             $this->salas->index();
         }
@@ -125,7 +125,7 @@ class UsuarioController extends Controller
 
     public function sair(){
         session_destroy();
-        header('Location: ../Public/?action=create');
+        header('Location: ?action=create');
     }
 
     public function verificarDuplicidadeEmail($email){
