@@ -2,10 +2,9 @@
     <div class="container">
         <div class="row mt-5">
             <nav class="nav nav-pills nav-fill">
-                <a class="nav-link" href="#">Salas</a>
-                <a class="nav-link" href="#">Usuarios</a>
-                <a class="nav-link" href="#">Reservas</a>
-                <a class="nav-link" aria-disabled="true">Sair</a>
+                <a class="nav-link" href="?action=index">Adicionar</a>
+                <a class="nav-link" href="?action=index">Home</a>
+                <a class="nav-link" href="?action=sair">Sair</a>
             </nav>
         </div>
 

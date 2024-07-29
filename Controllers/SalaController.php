@@ -6,6 +6,7 @@ class SalaController extends Controller
 {
     private $db;
     private $sala;
+    private $usuario;
 
     public function __construct() {
         $database = new BancoDeDados();
@@ -20,10 +21,16 @@ class SalaController extends Controller
     }
 
     public function create() {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $usuario = new UsuarioController();
+        if ($usuario->usuarioLogado()) {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            }
+            $stmt = $this->sala->read();
+            $salas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $this->render('Sala/Cadastro' , $salas);
+        }else{
+            //header('Location: ../Public/?action=create');
         }
-        $stmt = $this->sala->read();
-        $salas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $this->render('Sala/Cadastro' , $salas);
+        
     }
 }
